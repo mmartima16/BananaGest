@@ -27,7 +27,7 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 
 		try {
 			Connection conn = this.datasource.getConnection();
-		
+
 			String sql = "SELECT p.* FROM proyectob p WHERE p.idProyecto=? LIMIT 1";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, idProyecto);
@@ -36,12 +36,8 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 
 			if (rs.next()) {
 
-				proyectoADevolver = new ProyectoB(rs.getInt("idProyecto"), 
-						rs.getString("nombreProyecto"),
-						rs.getString("descProyecto"), 
-						rs.getDate("fechaFinProyecto"),
-						rs.getBoolean("estado"),
-						null);
+				proyectoADevolver = new ProyectoB(rs.getInt("idProyecto"), rs.getString("nombreProyecto"),
+						rs.getString("descProyecto"), rs.getDate("fechaFinProyecto"), rs.getBoolean("estado"), null);
 			}
 
 			pstm.close();
@@ -71,19 +67,15 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 			ResultSet rs = pstm.executeQuery();
 
 			while (rs.next()) {
-				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), 
-						rs.getString("nombreProyecto"),
-						rs.getString("descProyecto"), 
-						rs.getDate("fechaFinProyecto"),
-						rs.getBoolean("estado"),
-						null));
+				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), rs.getString("nombreProyecto"),
+						rs.getString("descProyecto"), rs.getDate("fechaFinProyecto"), rs.getBoolean("estado"), null));
 			}
 
 			pstm.close();
 
 			conn.close();
 
-			logger.info("Conexión exitosa:"+listADevolver);
+			logger.info("Conexión exitosa:" + listADevolver);
 
 		} catch (Exception e) {
 			logger.severe("Error en la conexión de BBDD:" + e);
@@ -99,19 +91,15 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 
 		try {
 			Connection conn = this.datasource.getConnection();
-			
+
 			String sql = "SELECT p.* FROM proyectoB p WHERE 1";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 
 			ResultSet rs = pstm.executeQuery();
 
 			while (rs.next()) {
-				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), 
-						rs.getString("nombreProyecto"),
-						rs.getString("descProyecto"), 
-						rs.getDate("fechaFinProyecto"),
-						rs.getBoolean("estado"),
-						null));
+				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), rs.getString("nombreProyecto"),
+						rs.getString("descProyecto"), rs.getDate("fechaFinProyecto"), rs.getBoolean("estado"), null));
 			}
 
 			pstm.close();
@@ -127,6 +115,31 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 
 		return listADevolver;
 	}
+
+	// INSERTAR PROYECTO:
+	@Override
+	public boolean insertProyecto() {
+
+		try {
+			Connection conn = this.datasource.getConnection();
+
+			String sql = "Insert into proyectob (idProyecto, nombreProyecto, descProyecto, fechaFinProyecto, estado, UsuarioB_uid) VALUES ()";
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			ResultSet rs = pstm.executeQuery();
+
+			pstm.close();
+
+			conn.close();
+
+			logger.info("Conexión exitosa");
+			return true;
+
+		} catch (Exception e) {
+			logger.severe("Error en la conexión de BBDD:" + e);
+			return false;
+		}
+
+	}
+
 }
-
-

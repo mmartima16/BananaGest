@@ -8,7 +8,6 @@
   <name>EM Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
