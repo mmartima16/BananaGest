@@ -17,37 +17,33 @@ import com.netmind.models.Message;
 import com.netmind.models.ProyectoB;
 import com.netmind.models.TareaB;
 
+@Path("/tarea") /* URL a la que atenderá las peticiones */
 public class TareasResource {
 
-	@Path("/tarea") /*URL a la que atenderá las peticiones*/ 
-	public class RestService { 
-		TareaDAO tDAO = (TareaDAO)DAOFactory.getInstance().getDAO("tarea");
-	 
-	    @GET  
-	    @Path("/{idTareas}") 
-	    @Produces({ MediaType.APPLICATION_JSON })
-	    
-	    public List <TareaB> getTareasList (@PathParam("idTareas") int idTareas){
-	    	List<TareaB> theTarea = tDAO.getTarea(1);
-	    	return theTarea;
-	    }
+	TareaDAO tDAO = (TareaDAO) DAOFactory.getInstance().getDAO("tarea");
+
+	@GET
+	@Path("/{idTareas}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<TareaB> getTareasList(@PathParam("idTareas") int idTareas) {
+		List<TareaB> theTarea = tDAO.getTarea(1);
+		return theTarea;
 	}
-	//POSTS, PUTS y DELETES 
-		@Path("/")
-		@POST
-		@Consumes(MediaType.APPLICATION_JSON)
-		@Produces(MediaType.APPLICATION_JSON)
-		
-		public Message insertUsuario(ProyectoB nuevoUser) {
+
+	// POSTS, PUTS y DELETES
+	@Path("/")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message insertUsuario(ProyectoB nuevoUser) {
 		return new Message("Usuario añadido");
-		}
-    
-		@Path("/{idProyecto}")
-		@DELETE
-		@Consumes(MediaType.APPLICATION_JSON)
-		@Produces(MediaType.APPLICATION_JSON)
-		
-		public Message deleteUser(@PathParam("idProyecto") int uid) {
-    	return new Message("Usuario borrado");
+	}
+
+	@Path("/{idProyecto}")
+	@DELETE
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Message deleteUser(@PathParam("idProyecto") int uid) {
+		return new Message("Usuario borrado");
 	}
 }

@@ -8,23 +8,25 @@ public class ProyectoB {
 	private int idProyecto;
 	private String nombreProyecto;
 	private String descProyecto;
-	private Date fechaFinProyecto;
+	private String fechaFinProyecto;
 	private boolean estado;
+	private String uid;
 	private List <TareaB> listaTareas;
 	
 	//Constructor
-	public ProyectoB(int idProyecto, String nombreProyecto, String descProyecto, Date fechaFinProyecto, boolean estado,
-			List<TareaB> listaTareas) {
+	public ProyectoB(int idProyecto, String nombreProyecto, String descProyecto, String fechaFinProyecto, boolean estado,
+			String uid, List<TareaB> listaTareas) {
 		super();
 		this.idProyecto = idProyecto;
 		this.nombreProyecto = nombreProyecto;
 		this.descProyecto = descProyecto;
 		this.fechaFinProyecto = fechaFinProyecto;
 		this.estado = estado;
+		this.uid = uid;
 		this.listaTareas = listaTareas;
 	}
 
-	//getters and setters
+	//Getters and Setters
 	public int getIdProyecto() {
 		return idProyecto;
 	}
@@ -49,11 +51,11 @@ public class ProyectoB {
 		this.descProyecto = descProyecto;
 	}
 
-	public Date getFechaFinProyecto() {
+	public String getFechaFinProyecto() {
 		return fechaFinProyecto;
 	}
 
-	public void setFechaFinProyecto(Date fechaFinProyecto) {
+	public void setFechaFinProyecto(String fechaFinProyecto) {
 		this.fechaFinProyecto = fechaFinProyecto;
 	}
 
@@ -65,6 +67,14 @@ public class ProyectoB {
 		this.estado = estado;
 	}
 
+	public String getUid() {
+		return uid;
+	}
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
 	public List<TareaB> getListaTareas() {
 		return listaTareas;
 	}
@@ -72,4 +82,6 @@ public class ProyectoB {
 	public void setListaTareas(List<TareaB> listaTareas) {
 		this.listaTareas = listaTareas;
 	}
+	
+	
 }

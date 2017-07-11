@@ -36,8 +36,13 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 
 			if (rs.next()) {
 
-				proyectoADevolver = new ProyectoB(rs.getInt("idProyecto"), rs.getString("nombreProyecto"),
-						rs.getString("descProyecto"), rs.getDate("fechaFinProyecto"), rs.getBoolean("estado"), null);
+				proyectoADevolver = new ProyectoB(rs.getInt("idProyecto"), 
+						rs.getString("nombreProyecto"),
+						rs.getString("descProyecto"), 
+						rs.getString("fechaFinProyecto"), 
+						rs.getBoolean("estado"), 
+						rs.getString("Usuariob_uid"),
+						null);
 			}
 
 			pstm.close();
@@ -67,8 +72,13 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 			ResultSet rs = pstm.executeQuery();
 
 			while (rs.next()) {
-				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), rs.getString("nombreProyecto"),
-						rs.getString("descProyecto"), rs.getDate("fechaFinProyecto"), rs.getBoolean("estado"), null));
+				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"),
+						rs.getString("nombreProyecto"),
+						rs.getString("descProyecto"), 
+						rs.getString("fechaFinProyecto"), 
+						rs.getBoolean("estado"), 
+						rs.getString("Usuariob_uid"), 
+						null));
 			}
 
 			pstm.close();
@@ -86,7 +96,7 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 	}
 
 	@Override
-	public List<ProyectoB> getProyecto() {
+	public List<ProyectoB> getProyectoList() {
 		List<ProyectoB> listADevolver = new ArrayList<ProyectoB>();
 
 		try {
@@ -98,8 +108,13 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 			ResultSet rs = pstm.executeQuery();
 
 			while (rs.next()) {
-				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), rs.getString("nombreProyecto"),
-						rs.getString("descProyecto"), rs.getDate("fechaFinProyecto"), rs.getBoolean("estado"), null));
+				listADevolver.add(new ProyectoB(rs.getInt("idProyecto"), 
+						rs.getString("nombreProyecto"),
+						rs.getString("descProyecto"), 
+						rs.getString("fechaFinProyecto"), 
+						rs.getBoolean("estado"), 
+						rs.getString("Usuariob_uid"),
+						null));
 			}
 
 			pstm.close();
@@ -118,13 +133,20 @@ public final class ProyectoDAOImpl extends ProyectoDAO {
 
 	// INSERTAR PROYECTO:
 	@Override
-	public boolean insertProyecto() {
+	public boolean insertProyecto(ProyectoB elProyecto) {
 
 		try {
 			Connection conn = this.datasource.getConnection();
 
-			String sql = "Insert into proyectob (idProyecto, nombreProyecto, descProyecto, fechaFinProyecto, estado, UsuarioB_uid) VALUES ()";
+			String sql = "Insert into proyectob"
+					+ " (idProyecto, nombreProyecto, descProyecto, fechaFinProyecto, estado, UsuarioB_uid) "
+					+ "VALUES (null, ?, ?, ?, ?, ?)";
 			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(2, elProyecto.getNombreProyecto());
+			pstm.setString(3, elProyecto.getDescProyecto());
+			pstm.setString(4, elProyecto.getFechaFinProyecto());
+			pstm.setBoolean(5, elProyecto.isEstado());
+			pstm.setString(6, elProyecto.getUid());
 
 			ResultSet rs = pstm.executeQuery();
 

@@ -10,27 +10,24 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.netmind.db.DAOFactory;
 import com.netmind.db.ProyectoDAO;
 import com.netmind.models.Message;
 import com.netmind.models.ProyectoB;
 
+@Path("/proyectos") /* URL a la que atenderá las peticiones */
 public class ProjectsResource {
-	@Path("/proyecto") /* URL a la que atenderá las peticiones */
-	public class RestService {
 
-		ProyectoDAO pDAO = (ProyectoDAO) DAOFactory.getInstance().getDAO("proyecto");
+	ProyectoDAO pDAO = (ProyectoDAO) DAOFactory.getInstance().getDAO("proyecto");
 
-		// GETS
-		@Path("/")
-		@GET
-		@Produces(MediaType.APPLICATION_JSON)
-		public List<ProyectoB> getProjectsList() {
-			List<ProyectoB> listaProyectos = pDAO.getUserProyecto(1);
-
-			return listaProyectos;
-		}
+	// GETS
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProyectoB> getProyectos() {
+		List<ProyectoB> listaProyectos = pDAO.getProyectoList();
+		return listaProyectos;
 	}
 
 	@GET
@@ -44,12 +41,13 @@ public class ProjectsResource {
 	}
 
 	// POSTS, PUTS y DELETES
-	@Path("/")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Message insertUsuario(ProyectoB nuevoUser) {
-		return new Message("Usuario añadido");
+	public Response insertUsuario(ProyectoB nuevoProyecto) {
+
+		String result = "Project saved : " + nuevoProyecto;
+		return Response.status(201).entity(result).build();
 	}
 
 	@Path("/{uid}")

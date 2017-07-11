@@ -1,4 +1,5 @@
 com\netmind\db\TareaDAOImpl.class
+com\netmind\models\User.class
 com\netmind\db\DAOFactory.class
 com\netmind\models\Message.class
 com\netmind\util\PropertyValues.class
@@ -11,8 +12,6 @@ com\netmind\controllers\LogoutServlet.class
 com\netmind\controllers\DetalleServlet.class
 com\netmind\controllers\LoginServlet.class
 com\netmind\controllers\PaginaprincipalServlet.class
-com\netmind\resources\ProjectsResource$RestService.class
-com\netmind\resources\TareasResource$RestService.class
 com\netmind\db\ProyectoDAOImpl.class
 com\netmind\db\UsuarioDAO.class
 com\netmind\models\UsuarioB.class
